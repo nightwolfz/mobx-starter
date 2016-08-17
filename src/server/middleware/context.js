@@ -1,5 +1,5 @@
 import { getAccount } from '../actions/account';
-import createState from '../../client/state'
+import { createServerState } from '../../client/state'
 import actions from '../../client/actions'
 
 /**
@@ -13,7 +13,7 @@ export default async function(req, res, next) {
     req.token = req.headers.token || req.cookies.token
 
     // Add state & session data
-    const state = createState()
+    const state = createServerState()
     state.app.hostname = req.headers.host
 
     // Check if logged in

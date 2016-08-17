@@ -6,7 +6,7 @@ import { render } from 'react-dom'
 import { Router, RouterContext, browserHistory } from 'react-router'
 import Context from './components/Common/Context'
 import routes from './routes'
-import createState from './state'
+import { createClientState } from './state'
 import actions from './actions'
 
 // This is the entry point for our client-side logic
@@ -17,7 +17,7 @@ if (process.env.BROWSER) {
 }
 
 // Initialize stores & inject server-side state into front-end
-const state = createState(window.__STATE)
+const state = createClientState()
 const context = {
     state,
     store: actions(state)
