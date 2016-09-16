@@ -12,35 +12,25 @@ export default class Account {
         this.request = request
     }
 
-    isLoggedIn() {
-        return !isEmpty(this.state.account)
-    }
+    isLoggedIn = () => !isEmpty(this.state.account)
 
-    find(username) {
-        return find(this.state.users, { username })
-    }
+    find = username => find(this.state.users, { username })
 
-    login(params) {
-        return this.request('api/account/login', params)
-                   .then(account => {
-                       this.state.account = account
-                       document.cookie = 'token=' + account.token;
-                   })
-    }
+    login = params => this.request('api/account/login', params)
+       .then(account => {
+           this.state.account = account
+           document.cookie = 'token=' + account.token;
+       })
 
-    logout() {
-        return this.request('api/account/logout')
-                   .then(() => {
-                       if (this.state.account) {
-                           this.state.account = null
-                           document.cookie = 'token='
-                       }
-                       window.location.href = '/'
-                   })
-    }
+    logout = () => this.request('api/account/logout')
+        .then(() => {
+           if (this.state.account) {
+             this.state.account = null
+             document.cookie = 'token='
+           }
+           window.location.href = '/'
+        })
 
-    register(params) {
-        return this.request('api/account/register', params)
-                   .then(account => this.state.account = account)
-    }
+    register = (params) => this.request('api/account/register', params)
+				.then(account => this.state.account = account)
 }
