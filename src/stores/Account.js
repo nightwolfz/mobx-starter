@@ -12,26 +12,26 @@ export default class Account {
     return size(this.state.account.username)
   }
 
-  @action find(username) {
-    return find(this.state.account.users, { username })
-  }
+  // @action find(username) {
+  //   return find(this.state.account.users, { username })
+  // }
 
-  @action login(params) {
-    return this.request.post('api/account/login', params).then(account => {
-      this.state.account = account
-    })
-  }
+  // @action login(params) {
+  //   return this.request.post('api/account/login', params).then(account => {
+  //     this.state.account = account
+  //   })
+  // }
 
-  @action logout() {
-    this.request.get('api/account/logout')
-    this.state.account.username = null
-    this.state.account.token = null
-  }
+  // @action logout() {
+  //   this.request.get('api/account/logout')
+  //   this.state.account.username = null
+  //   this.state.account.token = null
+  // }
 
-  @action register(params) {
-    return this.request.post('api/account/register', params).then(account => {
-      this.state.account = account
-    })
-  }
+  // @action register(params) {
+  //   return this.request.post('api/account/register', params).then(account => {
+  //     this.state.account = account
+  //   })
+  // }
 }
 

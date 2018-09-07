@@ -14,11 +14,14 @@ const app = new Koa()
 app.context.onerror = catcher
 
 // Serve static files
+const mount = require('koa-mount')
+const serve = require('koa-static')
 if (process.env.NODE_ENV !== 'production') {
-  const mount = require('koa-mount')
-  const serve = require('koa-static')
-
-  for(const [k, v] of Object.entries(config.http.static)) {
+  for(const [k, v] of Object.entries(config.http.static.dev)) {
+    app.use(mount(k, serve(v, {index: false})))
+  }
+}else{
+  for(const [k, v] of Object.entries(config.http.static.prod)) {
     app.use(mount(k, serve(v, {index: false})))
   }
 }

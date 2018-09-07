@@ -12,9 +12,13 @@ export default {
     hostname: global.HOSTNAME,
     favicon: path.join(__dirname, '../src/assets/favicon.ico'),
     static: {
-      //'/build': root('build'),
-      '/assets': root('src/assets')
-    }
+      prod: {
+        '/build': root('build')
+      },
+      dev: {
+        '/assets': root('src/assets')
+      }
+    },
   },
   server: {
     DEV: !isProduction,
